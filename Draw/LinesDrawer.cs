@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class LinesDrawer : MonoBehaviour
 {
     [SerializeField] GameObject linePrefab;
-    [SerializeField] Gradient lineColor;
     [SerializeField] float linePointsMinDIstance, lineWidth;
     [SerializeField] LayerMask cantDrawOverLayer;
 
+    LineColor lineColor;
     int cantDrawOverLayerIndex;
     Line currentLine;
     Camera cam;
 
     void Start()
     {
+        lineColor = new LineColor(new WhiteRedGradient());
         cam = Camera.main;
         cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOver");
     }
@@ -42,7 +44,7 @@ public class LinesDrawer : MonoBehaviour
         currentLine = Instantiate(linePrefab, this.transform).GetComponent<Line>();
 
         currentLine.UsePhysics(false);
-        currentLine.SetLineColor(lineColor);
+        currentLine.SetLineColor(lineColor.CreationGradient());
         currentLine.SetPointsMinDistance(linePointsMinDIstance);
         currentLine.SetLineWidth(lineWidth);
     }
