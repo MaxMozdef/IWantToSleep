@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class LinesDrawer : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class LinesDrawer : MonoBehaviour
 
     void Start()
     {
-        lineColor = new LineColor(new WhiteRedGradient());
+        lineColor = new LineColor(new YelloBlueGradient());
         cam = Camera.main;
         cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOver");
     }
