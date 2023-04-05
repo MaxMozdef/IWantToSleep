@@ -11,13 +11,20 @@ public class LinesDrawer : MonoBehaviour
     Line currentLine;
     Camera cam;
 
+    public static bool isPossibleDraw;
+
+    void Awake()
+    {
+        Time.timeScale = 1.0f;
+        isPossibleDraw = true;
+    }
+
     void Start()
     {
         lineColor = new LineColor(new YelloBlueGradient());
         cam = Camera.main;
         cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOver");
     }
-
 
     void Update()
     {
@@ -26,7 +33,7 @@ public class LinesDrawer : MonoBehaviour
 
     void DrawComplite()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isPossibleDraw)
             BeginDraw();
 
         if (currentLine != null)
