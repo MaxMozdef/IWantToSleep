@@ -5,7 +5,7 @@ public class AllLevelDiscriptionTextMessage : MonoBehaviour
 {
     public Dictionary<int, string> discriptionTextMessages = new Dictionary<int, string>()
     {
-        {1, "draw something on the screen with your finger" },
-        {2, "some text" }
+        {0, "draw something on the screen with your finger" },
+        {1, "some text" }
     };
 }

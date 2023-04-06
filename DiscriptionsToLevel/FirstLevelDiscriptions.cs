@@ -14,7 +14,7 @@ public class FirstLevelDiscriptions : MonoBehaviour
 
     void Start()
     {
-        FirstLevelDiscriptionsText.text = allLevelDiscriptionTextMessage.discriptionTextMessages[1];
+        FirstLevelDiscriptionsText.text = allLevelDiscriptionTextMessage.discriptionTextMessages[0];
     }
 
     void Update()

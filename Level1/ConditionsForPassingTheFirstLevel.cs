@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,8 +24,8 @@ public class ConditionsForPassingTheFirstLevel : MonoBehaviour
     {
         if (isLineTouchPlatform)
         {
-            Time.timeScale = 0;
             LinesDrawer.isPossibleDraw = false;
+            Time.timeScale = 0;
         }
     }
 }
