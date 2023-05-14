@@ -1,23 +1,51 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class ShowMainMenuButtons : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI nameGameMainMenu;
     [SerializeField] TapToPlay toPlay;
+    [SerializeField] Animator upGameName, playButtonAnimation, exitButtonAnimation;
+    [SerializeField] Button playButton, exitButton;
 
-    Vector2 newGameNamePosition = new Vector2( 0, 30);
+    bool isMainMenuUpPosition = false;
 
-    void OnEnable() => TapToPlay.firstTapAction += UpMainMenu;
-    void OnDisable() => TapToPlay.firstTapAction -= UpMainMenu;
+    void OnEnable()
+    {
+        TapToPlay.firstTapAction += UpMainMenu;
+        TapToPlay.firstTapAction += ShowButtons;
+    }
+    void OnDisable()
+    {
+        TapToPlay.firstTapAction -= UpMainMenu;
+        TapToPlay.firstTapAction -= ShowButtons;
+    }
 
     void UpMainMenu()
     {
         if (toPlay.isTapFirstTime)
         {
-            nameGameMainMenu.transform.position = Vector2.Lerp(transform.position, newGameNamePosition, Time.deltaTime / 2);
+            upGameName.Play("GameNameUp");
+            isMainMenuUpPosition = true;
         }
+    }
+
+    void ShowButtons()
+    {
+        if (isMainMenuUpPosition)
+            StartCoroutine(ShowButtons—oroutine());
+    }
+
+    IEnumerator ShowButtons—oroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        playButton.gameObject.SetActive(true);
+        playButtonAnimation.Play("RotateButton");
+
+        exitButton.gameObject.SetActive(true);
+        exitButtonAnimation.Play("RotateButton");
     }
 }
