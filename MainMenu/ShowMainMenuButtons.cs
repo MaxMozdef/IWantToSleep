@@ -10,7 +10,8 @@ public class ShowMainMenuButtons : MonoBehaviour
     [SerializeField] Animator upGameName, playButtonAnimation, exitButtonAnimation;
     [SerializeField] Button playButton, exitButton;
 
-    bool isMainMenuUpPosition = false;
+    public bool isMainMenuUpPosition { get; private set; }
+
 
     void OnEnable()
     {
@@ -21,6 +22,11 @@ public class ShowMainMenuButtons : MonoBehaviour
     {
         TapToPlay.firstTapAction -= UpMainMenu;
         TapToPlay.firstTapAction -= ShowButtons;
+    }
+
+    void Start()
+    {
+        isMainMenuUpPosition = false;
     }
 
     void UpMainMenu()
