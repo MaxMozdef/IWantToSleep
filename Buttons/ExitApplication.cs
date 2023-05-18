@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ExitApplication : MonoBehaviour
+public class ExitApplication : ImplementShowButtons
 {
     public void ExitGame()
     {

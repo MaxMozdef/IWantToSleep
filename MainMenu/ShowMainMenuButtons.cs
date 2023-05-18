@@ -7,26 +7,18 @@ public class ShowMainMenuButtons : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI nameGameMainMenu;
     [SerializeField] TapToPlay toPlay;
-    [SerializeField] Animator upGameName, playButtonAnimation, exitButtonAnimation;
-    [SerializeField] Button playButton, exitButton;
+    [SerializeField] Animator upGameName;
 
     public bool isMainMenuUpPosition { get; private set; }
-
-
-    void OnEnable()
-    {
-        TapToPlay.firstTapAction += UpMainMenu;
-        TapToPlay.firstTapAction += ShowButtons;
-    }
-    void OnDisable()
-    {
-        TapToPlay.firstTapAction -= UpMainMenu;
-        TapToPlay.firstTapAction -= ShowButtons;
-    }
 
     void Start()
     {
         isMainMenuUpPosition = false;
+    }
+
+    void Update()
+    {
+        UpMainMenu();
     }
 
     void UpMainMenu()
@@ -36,22 +28,5 @@ public class ShowMainMenuButtons : MonoBehaviour
             upGameName.Play("GameNameUp");
             isMainMenuUpPosition = true;
         }
-    }
-
-    void ShowButtons()
-    {
-        if (isMainMenuUpPosition)
-            StartCoroutine(ShowButtons—oroutine());
-    }
-
-    IEnumerator ShowButtons—oroutine()
-    {
-        yield return new WaitForSeconds(1.5f);
-
-        playButton.gameObject.SetActive(true);
-        playButtonAnimation.Play("RotateButton");
-
-        exitButton.gameObject.SetActive(true);
-        exitButtonAnimation.Play("RotateButton");
     }
 }

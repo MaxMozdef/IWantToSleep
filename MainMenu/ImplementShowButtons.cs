@@ -7,52 +7,25 @@ using UnityEngine.UI;
 
 public class ImplementShowButtons : MonoBehaviour
 {
-    [SerializeField] string animationName;
-    [SerializeField] ShowMainMenuButtons showMainMenuButtons;
     [SerializeField] Button thisButton;
+    [SerializeField] TapToPlay toPlay;
 
-    Animator thisButtonAnimator;
-    UnityAction<Button, Animator, string> ShowButtonAction;
-
-    void OnEnable()
-    {
-        thisButton = GetComponent<Button>();
-        thisButtonAnimator = GetComponent<Animator>();
-
-        ShowButtonAction += AppereanceButton;
-    }
-
-    void OnDisable()
-    {
-        ShowButtonAction -= AppereanceButton;
-    }
+    float buttonDelay = 1.1f;
 
     void Update()
     {
-        StartShowButtonAction();
+        ShowMainMenuButton();
     }
 
-    private void StartShowButtonAction()
+    private void ShowMainMenuButton()
     {
-        if (showMainMenuButtons.isMainMenuUpPosition)
-            ShowButtonAction.DynamicInvoke(this);
+        if (toPlay.isTapFirstTime)
+            StartCoroutine(ActivetedButton());
     }
 
-    void AppereanceButton(Button but, Animator anim, string animName)
+    IEnumerator ActivetedButton()
     {
-        but = thisButton;
-        anim = thisButtonAnimator;
-        animName = animationName;
-
-        IEnumerator ShowButtonsCoroutine()
-        {
-            yield return new WaitForSeconds(1.5f);
-
-            but.gameObject.SetActive(true);
-            anim.Play(animName);
-        }
-
-        if (showMainMenuButtons.isMainMenuUpPosition)
-            StartCoroutine(ShowButtonsCoroutine());
+        yield return new WaitForSeconds(buttonDelay);
+        thisButton.gameObject.SetActive(true);
     }
 }
