@@ -1,6 +1,7 @@
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextLevelButton : ImplementShowButtons
+public class NextLevelButtonFuncsional : MonoBehaviour
 {
     Scene scene;
 
@@ -9,7 +10,7 @@ public class NextLevelButton : ImplementShowButtons
         scene = SceneManager.GetActiveScene();
     }
 
-    public void GoToNextLevel()
+    public void GoToSecondLevel()
     {
         SceneManager.LoadScene(scene.buildIndex + 1);
     }
